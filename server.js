@@ -35,9 +35,11 @@ app.get("/places/autocomplete", async (req, res) => {
     }
 });
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
     res.write('hello from node js');
+    res.end();  // Corrected: added parentheses to call res.end
 });
+
 
 // Proxy route for place details
 app.get("/places/details", async (req, res) => {
