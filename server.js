@@ -35,6 +35,10 @@ app.get("/places/autocomplete", async (req, res) => {
     }
 });
 
+app.get("/", async (req, res) => {
+    res.write('hello from node js');
+});
+
 // Proxy route for place details
 app.get("/places/details", async (req, res) => {
     const { place_id } = req.query;
