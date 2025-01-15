@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Autocomplete endpoint
 app.get("/autocomplete", async (req, res) => {
     const { input } = req.query;
 
@@ -32,6 +33,7 @@ app.get("/autocomplete", async (req, res) => {
     }
 });
 
+// Place details endpoint
 app.get("/details", async (req, res) => {
     const { place_id } = req.query;
 
@@ -57,4 +59,35 @@ app.get("/details", async (req, res) => {
     }
 });
 
+// Reverse Geocoding endpoint (Latitude & Longitude to Address)
+app.get("/reverse-geocode", async (req, res) => {
+    const { lat, lng } = req.query;
+
+    if (!lat || !lng) {
+        return res.status(400).json({ error: "Latitude and Longitude are required" });
+    }
+
+    try {
+        const response = await axios.get(
+            `https://maps.googleapis.com/maps/api/geocode/json`,
+            {
+                params: {
+                    latlng: `${lat},${lng}`,
+                    key: process.env.GOOGLE_API_KEY,
+                },
+            }
+        );
+
+        if (response.data.results.length === 0) {
+            return res.status(404).json({ error: "No address found for the given coordinates" });
+        }
+
+        const address = response.data.results[0].formatted_address;
+        res.json({ address });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch address" });
+    }
+});
+
+// Export the app for Vercel
 module.exports = app;
