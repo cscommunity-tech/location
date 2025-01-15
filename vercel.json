@@ -1,0 +1,19 @@
+{
+	"version": 2,
+	"builds": [
+		{
+			"src": "api/places/*.js",
+			"use": "@vercel/node"
+		}
+	],
+	"routes": [
+		{
+			"src": "/places/autocomplete",
+			"dest": "/api/places/autocomplete.js"
+		},
+		{
+			"src": "/places/details",
+			"dest": "/api/places/details.js"
+		}
+	]
+}
