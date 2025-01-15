@@ -1,15 +1,25 @@
 {
-	"name": "google-places-vercel",
-	"version": "1.0.0",
-	"main": "index.js",
-	"dependencies": {
-		"axios": "^1.7.9",
-		"dotenv": "^16.0.0"
-	},
-	"devDependencies": {
-		"vercel": "^28.1.0"
-	},
-	"scripts": {
-		"start": "vercel dev"
-	}
+  "name": "places-autocomplete",
+  "version": "1.0.0",
+  "description": "A Node.js backend for Google Places Autocomplete to use with Flutter Web.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": ["google-places-api", "autocomplete", "express", "vercel"],
+  "author": "Your Name",
+  "license": "MIT"
 }
