@@ -2,22 +2,22 @@
 	"version": 2,
 	"builds": [
 		{
-			"src": "api/*.js",
+			"src": "api/**/*.js",
 			"use": "@vercel/node"
 		}
 	],
+	"functions": {
+		"api/**/*.js": {
+			"runtime": "nodejs18.x"
+		}
+	},
 	"routes": [
 		{
-			"src": "/places/autocomplete",
-			"dest": "/api/autocomplete.js"
-		},
-		{
-			"src": "/places/details",
-			"dest": "/api/details.js"
-		},
-		{
-			"src": "/",
-			"dest": "/api/hello.js"
+			"src": "/api/(.*)",
+			"dest": "/api/$1"
 		}
-	]
+	],
+	"env": {
+		"GOOGLE_API_KEY": "@google-api-key"
+	}
 }
