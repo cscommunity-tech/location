@@ -8,7 +8,7 @@
 	],
 	"routes": [
 		{
-			"src": "/api/places/autocomplete",
+			"src": "/",
 			"dest": "/api/places/autocomplete.js"
 		},
 		{
@@ -16,7 +16,7 @@
 			"dest": "/api/places/details.js"
 		},
 		{
-			"src": "/",
+			"src": "/fetch",
 			"dest": "/api/hello.js"
 		}
 	]
