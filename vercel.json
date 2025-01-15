@@ -19,10 +19,5 @@
 			"src": "/",
 			"dest": "/api/hello.js"
 		}
-	],
-	"functions": {
-		"api/*.js": {
-			"includeFiles": ["node_modules/axios/dist/**/*"]
-		}
-	}
+	]
 }
