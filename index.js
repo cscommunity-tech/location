@@ -89,5 +89,33 @@ app.get("/reverse-geocode", async (req, res) => {
     }
 });
 
+// VIN Decode endpoint
+app.get("/vin-decode", async (req, res) => {
+    const { vin } = req.query;
+
+    if (!vin) {
+        return res.status(400).json({ error: "VIN parameter is required" });
+    }
+
+    try {
+        const API_URL = `https://auto.dev/api/vin/${vin}`;
+        const API_KEY = "ZrQEPSkKa29ucmFkemFybm93c2tpQHV0ZXhhcy5lZHU=";
+
+        const response = await axios.get(API_URL, {
+            headers: {
+                "Content-Type": "application/json",
+                "apikey": API_KEY,
+            },
+        });
+
+        res.status(200).json(response.data);
+    } catch (error) {
+        res.status(500).json({
+            error: "Failed to fetch VIN data",
+            message: error.message,
+        });
+    }
+});
+
 // Export the app for Vercel
 module.exports = app;
